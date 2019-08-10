@@ -7,20 +7,30 @@
 //
 import UIKit
 
-class ViewController: UIViewController{
-    var gradientLayer: CAGradientLayer!
+class homepageController: UIViewController{
     
-    func createGradientLayer() {
-        gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.view.bounds
-        gradientLayer.colors = [UIColor(hue: 0.519, saturation: 0.491, brightness: 1, alpha: 0.5).cgColor, UIColor(hue: 0.772, saturation: 0.538, brightness: 0.914, alpha: 0.5).cgColor]
-        self.view.layer.addSublayer(gradientLayer)
+    
+    func assignbackground(){
+        let background = UIImage(named: "GradientBackground")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
+
+    
+    
     
     let logoImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
+        iv.translatesAutoresizingMaskIntoConstraints = false
         //SETS LOGO IMAGE
         iv.image = UIImage(named: "logo")
         return iv
@@ -30,6 +40,7 @@ class ViewController: UIViewController{
         let welcomeLabel = UILabel()
         welcomeLabel.text = "Welcome to Brain Benchmark"
         welcomeLabel.font = UIFont(name: "SF Pro Rounded", size: 30)
+        welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         welcomeLabel.textColor = .white
         return welcomeLabel
     }()
@@ -41,7 +52,7 @@ class ViewController: UIViewController{
         
         getStarted.titleLabel?.font = UIFont(name: "SF Pro Rounded", size: 24)
         getStarted.setTitleColor(UIColor.white, for: .normal)
-        
+        getStarted.translatesAutoresizingMaskIntoConstraints = false
         getStarted.backgroundColor = UIColor(hue: 0.265, saturation: 0.226, brightness: 0.851, alpha: 0.76)
         getStarted.layer.cornerRadius = 30
         getStarted.contentEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
@@ -55,17 +66,21 @@ class ViewController: UIViewController{
         about.frame = CGRect(x: 0, y: 0, width: 30, height: 20)
         about.titleLabel?.font = UIFont(name: "SF Pro Rounded", size: 24)
         about.setTitleColor(UIColor.white, for: .normal)
-        
+        about.translatesAutoresizingMaskIntoConstraints = false
         about.backgroundColor = UIColor(hue: 0.267, saturation: 0.223, brightness: 0.85, alpha: 0.76)
         about.layer.cornerRadius = 30
         about.contentEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
-        //about.addTarget(self, action: #selector(aboutButtonPush), for: .touchUpInside)
+        about.addTarget(self, action: #selector(aboutButtonPush), for: .touchUpInside)
+        
         return about
     }()
     
-    //@objc func aboutButtonPush() {
-    //navigationController?.pushViewController(AboutViewController(), animated: true)
-    // }
+    
+    
+    @objc func aboutButtonPush() {
+        navigationController?.pushViewController(aboutViewController(), animated: true)
+        print("Pushed view to aboutViewController")
+     }
     
     lazy var stackView: UIStackView = {
         let order =  UIStackView(arrangedSubviews: [getStartedButton,aboutButton])
@@ -80,12 +95,13 @@ class ViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewComponents()
-        print("Loaded")
+        print("Loaded Homepage")
     }
     
 func configureViewComponents(){
-    //ADDS THE GRADIENT BACKGROUND
-    createGradientLayer()
+    
+    assignbackground()
+    
     
     //AUTOLAYOUT FOR LOGO
     view.addSubview(logoImageView)
