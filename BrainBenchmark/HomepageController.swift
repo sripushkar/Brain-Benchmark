@@ -98,6 +98,9 @@ class homepageController: UIViewController{
         print("Loaded Homepage")
     }
     
+    
+    
+    
 func configureViewComponents(){
     
     assignbackground()
