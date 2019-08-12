@@ -56,9 +56,14 @@ class homepageController: UIViewController{
         getStarted.backgroundColor = UIColor(hue: 0.265, saturation: 0.226, brightness: 0.851, alpha: 0.76)
         getStarted.layer.cornerRadius = 30
         getStarted.contentEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
-        //getStarted.addTarget(self, action: #selector(handleCreateEvent), for: .touchUpInside)
+        getStarted.addTarget(self, action: #selector(activitiesButtonPush), for: .touchUpInside)
         return getStarted
     }()
+    
+    @objc func activitiesButtonPush() {
+        navigationController?.pushViewController(activitiesController(), animated: true)
+        print("Pushed view to activitiesController")
+    }
     
     let aboutButton: UIButton = {
         let about = UIButton(type: .system)
