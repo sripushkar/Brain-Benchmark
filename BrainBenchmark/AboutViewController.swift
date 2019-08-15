@@ -66,7 +66,7 @@ class aboutViewController: UIViewController {
     
     @objc func backToHomepage() {
         navigationController?.popViewController(animated: true)
-        print("Pushed view to aboutViewController")
+        print("Popped View to homepage")
     }
     
     override func viewDidLoad() {
