@@ -6,25 +6,11 @@
 //  Copyright © 2019 Sri Julapally. All rights reserved.
 //
 import UIKit
+import CoreText
+import FlatUIKit
 
 class homepageController: UIViewController{
-    
-    
-    func assignbackground(){
-        let background = UIImage(named: "GradientBackground")
-        
-        var imageView : UIImageView!
-        imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.center = view.center
-        view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
-    }
 
-    
-    
     
     let logoImageView: UIImageView = {
         let iv = UIImageView()
@@ -42,21 +28,34 @@ class homepageController: UIViewController{
         welcomeLabel.font = UIFont(name: "SF Pro Rounded", size: 30)
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         welcomeLabel.textColor = .white
+        let attributedString = NSMutableAttributedString.init(string: "Welcome to Brain Benchmark!")
+        
+        //ADDS AN UNDERLINE
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: 1, range: NSRange.init(location: 0, length: attributedString.length))
+        welcomeLabel.attributedText = attributedString
         return welcomeLabel
     }()
     
-    let getStartedButton: UIButton = {
-        let getStarted = UIButton(type: .system)
-        getStarted.setTitle("Get Started", for: .normal)
+    let getStartedButton: FUIButton = {
+        let getStarted = FUIButton(type: .system)
         getStarted.frame = CGRect(x: 0, y: 0, width: 30, height: 20)
-        
+        getStarted.setTitle("Get Started", for: .normal)
+        getStarted.buttonColor = UIColor.turquoise()
+        getStarted.shadowColor = UIColor.greenSea()
+        getStarted.shadowHeight = 3.0
+        getStarted.cornerRadius = 6.0
+        getStarted.titleLabel?.font = UIFont.init(name: "Lato-Regular.ttf", size: 24)
+        getStarted.setTitleColor(UIColor.clouds(), for: .normal)
+        getStarted.setTitleColor(UIColor.clouds(), for: .highlighted)
+        getStarted.addTarget(self, action:#selector(activitiesButtonPush), for: .touchUpInside)
+        /*
         getStarted.titleLabel?.font = UIFont(name: "SF Pro Rounded", size: 24)
         getStarted.setTitleColor(UIColor.white, for: .normal)
         getStarted.translatesAutoresizingMaskIntoConstraints = false
         getStarted.backgroundColor = UIColor(hue: 0.265, saturation: 0.226, brightness: 0.851, alpha: 0.76)
         getStarted.layer.cornerRadius = 30
         getStarted.contentEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
-        getStarted.addTarget(self, action: #selector(activitiesButtonPush), for: .touchUpInside)
+ */
         return getStarted
     }()
     

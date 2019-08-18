@@ -18,7 +18,7 @@ class verbalMemoryController: UIViewController{
     }
     
     func configureViewComponents(){
-        
+        assignbackground()
     }
     
 }

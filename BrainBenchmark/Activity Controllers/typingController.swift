@@ -18,7 +18,7 @@ class typingController: UIViewController{
     }
     
     func configureViewComponents(){
-        
+        assignbackground()
     }
     
 }

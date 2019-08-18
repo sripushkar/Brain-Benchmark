@@ -18,7 +18,7 @@ class hearingController: UIViewController{
     }
     
     func configureViewComponents(){
-        
+        assignbackground()
     }
     
 }

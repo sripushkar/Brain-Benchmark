@@ -18,7 +18,7 @@ class reactionTimeController: UIViewController{
     }
     
     func configureViewComponents(){
-        
+        assignbackground()
     }
     
 }

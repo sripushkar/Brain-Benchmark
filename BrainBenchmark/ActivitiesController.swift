@@ -11,20 +11,6 @@ import UIKit
 
 class activitiesController: UIViewController{
     
-    
-    func assignbackground(){
-        let background = UIImage(named: "GradientBackground")
-        
-        var imageView : UIImageView!
-        imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.center = view.center
-        view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
-    }
-    
     let activitiesTitle: UILabel = {
         let testYourBrain = UILabel()
         testYourBrain.text = "Test Your Brain"
@@ -37,7 +23,7 @@ class activitiesController: UIViewController{
         testYourBrain.attributedText = attributedString
         return testYourBrain
     }()
-    
+  
     let backButton: UIButton = {
         let back = UIButton()
         let backIcon = UIImage(named: "backIcon")
@@ -47,15 +33,12 @@ class activitiesController: UIViewController{
         return back
     }()
     
-    func setBackButton(){
-        
-        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "backIcon"), style: .plain, target: nil, action: #selector(backToHomepage))
-    }
-    
+ 
     @objc func backToHomepage() {
         navigationController?.popViewController(animated: true)
         print("Popped View to homepage")
     }
+ 
     
     //ACTIVITIES ON LEFT SIDE OF SCREEN STACKVIEW
     lazy var leftColumn: UIStackView = {
@@ -79,6 +62,7 @@ class activitiesController: UIViewController{
         numberMemory.setTitle("Number Memory", for: .normal)
         //numberMemory.frame = CGRect(x: 0, y: 0, width: (screenSize.width/2)-(screenSize.width/20), height: (screenSize.height/3)-(screenSize.width/30))
         numberMemory.backgroundColor = UIColor.white
+        numberMemory.addTarget(self, action: #selector(numberMemoryPush), for: .touchUpInside)
         
         return numberMemory
         }()
@@ -93,6 +77,7 @@ class activitiesController: UIViewController{
         reactiontime.setTitle("Reaction Time", for: .normal)
         //reactiontime.frame = CGRect(x: 0, y: 0, width: (screenSize.width/2)-(screenSize.width/20), height: (screenSize.height/3)-(screenSize.width/30))
         reactiontime.backgroundColor = UIColor.white
+        reactiontime.addTarget(self, action: #selector(reactionTimePush), for: .touchUpInside)
         
         return reactiontime
     }()
@@ -107,6 +92,7 @@ class activitiesController: UIViewController{
         verbalMemory.setTitle("Verbal Memory", for: .normal)
         //verbalMemory.frame = CGRect(x: 0, y: 0, width: (screenSize.width/2)-(screenSize.width/20), height: (screenSize.height/3)-(screenSize.width/30))
         verbalMemory.backgroundColor = UIColor.white
+        verbalMemory.addTarget(self, action: #selector(verbalMemoryPush), for: .touchUpInside)
         
         return verbalMemory
     }()
@@ -133,6 +119,7 @@ class activitiesController: UIViewController{
         visualMemory.setTitle("Visual Memory", for: .normal)
         //verbalMemory.frame = CGRect(x: 0, y: 0, width: (screenSize.width/2)-(screenSize.width/20), height: (screenSize.height/3)-(screenSize.width/30))
         visualMemory.backgroundColor = UIColor.white
+        visualMemory.addTarget(self, action: #selector(visualMemoryPush), for: .touchUpInside)
         
         return visualMemory
     }()
@@ -147,6 +134,7 @@ class activitiesController: UIViewController{
         hearing.setTitle("Hearing", for: .normal)
         //verbalMemory.frame = CGRect(x: 0, y: 0, width: (screenSize.width/2)-(screenSize.width/20), height: (screenSize.height/3)-(screenSize.width/30))
         hearing.backgroundColor = UIColor.white
+        hearing.addTarget(self, action: #selector(hearingControllerPush), for: .touchUpInside)
         
         return hearing
     }()
@@ -161,9 +149,41 @@ class activitiesController: UIViewController{
         typing.setTitle("Typing", for: .normal)
         //verbalMemory.frame = CGRect(x: 0, y: 0, width: (screenSize.width/2)-(screenSize.width/20), height: (screenSize.height/3)-(screenSize.width/30))
         typing.backgroundColor = UIColor.white
+        typing.addTarget(self, action: #selector(typingControllerPush), for: .touchUpInside)
         
         return typing
     }()
+    
+    //ALL BUTTON PUSHES
+    @objc func numberMemoryPush() {
+        navigationController?.pushViewController(numberMemoryController(), animated: true)
+        print("Pushed view to number memory")
+    }
+    
+    @objc func reactionTimePush() {
+        navigationController?.pushViewController(reactionTimeController(), animated: true)
+        print("Pushed view to reaction time")
+    }
+    
+    @objc func verbalMemoryPush() {
+        navigationController?.pushViewController(verbalMemoryController(), animated: true)
+        print("Pushed view to verbal memory")
+    }
+    
+    @objc func visualMemoryPush() {
+        navigationController?.pushViewController(visualMemoryController(), animated: true)
+        print("Pushed view to visual memory")
+    }
+    
+    @objc func hearingControllerPush() {
+        navigationController?.pushViewController(hearingController(), animated: true)
+        print("Pushed view to hearing")
+    }
+    
+    @objc func typingControllerPush() {
+        navigationController?.pushViewController(typingController(), animated: true)
+        print("Pushed view to typing")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,7 +196,7 @@ class activitiesController: UIViewController{
     func configureViewComponents(){
     
         assignbackground()
-        setBackButton()
+        //setBackButton()
         
         view.addSubview(activitiesTitle)
         activitiesTitle.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 40, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 0)
@@ -187,7 +207,9 @@ class activitiesController: UIViewController{
         
         view.addSubview(rightColumn)
         rightColumn.anchor(top: activitiesTitle.bottomAnchor, left: view.centerXAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 10, paddingLeft: 5, paddingBottom: 0, paddingRight: 10, width: 0, height: 0)
-        //view.addSubview(backButton)
+        
+        view.addSubview(backButton)
+        backButton.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 40, paddingLeft: 20, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
        
         
         

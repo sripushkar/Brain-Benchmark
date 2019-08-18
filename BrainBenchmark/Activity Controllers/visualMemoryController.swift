@@ -18,7 +18,7 @@ class visualMemoryController: UIViewController{
     }
     
     func configureViewComponents(){
-        
+        assignbackground()
     }
     
 }
