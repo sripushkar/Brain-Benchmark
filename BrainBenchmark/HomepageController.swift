@@ -25,7 +25,7 @@ class homepageController: UIViewController{
     let welcomeToBrainBenchmark: UILabel = {
         let welcomeLabel = UILabel()
         welcomeLabel.text = "Welcome to Brain Benchmark"
-        welcomeLabel.font = UIFont(name: "SF Pro Rounded", size: 30)
+        welcomeLabel.font = UIFont(name: "Lato-Italic", size: 30)
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         welcomeLabel.textColor = .white
         let attributedString = NSMutableAttributedString.init(string: "Welcome to Brain Benchmark!")
@@ -44,9 +44,10 @@ class homepageController: UIViewController{
         getStarted.shadowColor = UIColor.greenSea()
         getStarted.shadowHeight = 3.0
         getStarted.cornerRadius = 6.0
-        getStarted.titleLabel?.font = UIFont.init(name: "Lato-Regular.ttf", size: 24)
+        getStarted.titleLabel?.font = UIFont.init(name: "Lato-Regular", size: 24)
         getStarted.setTitleColor(UIColor.clouds(), for: .normal)
         getStarted.setTitleColor(UIColor.clouds(), for: .highlighted)
+        getStarted.contentEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
         getStarted.addTarget(self, action:#selector(activitiesButtonPush), for: .touchUpInside)
         /*
         getStarted.titleLabel?.font = UIFont(name: "SF Pro Rounded", size: 24)
@@ -54,7 +55,7 @@ class homepageController: UIViewController{
         getStarted.translatesAutoresizingMaskIntoConstraints = false
         getStarted.backgroundColor = UIColor(hue: 0.265, saturation: 0.226, brightness: 0.851, alpha: 0.76)
         getStarted.layer.cornerRadius = 30
-        getStarted.contentEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
+        
  */
         return getStarted
     }()
@@ -64,8 +65,20 @@ class homepageController: UIViewController{
         print("Pushed view to activitiesController")
     }
     
-    let aboutButton: UIButton = {
-        let about = UIButton(type: .system)
+    let aboutButton: FUIButton = {
+        let about = FUIButton(type: .system)
+        about.frame = CGRect(x: 0, y: 0, width: 30, height: 20)
+        about.setTitle("About", for: .normal)
+        about.buttonColor = UIColor.turquoise()
+        about.shadowColor = UIColor.greenSea()
+        about.shadowHeight = 3.0
+        about.cornerRadius = 6.0
+        about.titleLabel?.font = UIFont.init(name: "Lato-Regular", size: 24)
+        about.setTitleColor(UIColor.clouds(), for: .normal)
+        about.setTitleColor(UIColor.clouds(), for: .highlighted)
+        about.contentEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
+        about.addTarget(self, action: #selector(aboutButtonPush), for: .touchUpInside)
+        /*
         about.setTitle("About", for: .normal)
         about.frame = CGRect(x: 0, y: 0, width: 30, height: 20)
         about.titleLabel?.font = UIFont(name: "SF Pro Rounded", size: 24)
@@ -73,13 +86,11 @@ class homepageController: UIViewController{
         about.translatesAutoresizingMaskIntoConstraints = false
         about.backgroundColor = UIColor(hue: 0.267, saturation: 0.223, brightness: 0.85, alpha: 0.76)
         about.layer.cornerRadius = 30
-        about.contentEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
-        about.addTarget(self, action: #selector(aboutButtonPush), for: .touchUpInside)
         
+        
+        */
         return about
     }()
-    
-    
     
     @objc func aboutButtonPush() {
         navigationController?.pushViewController(aboutViewController(), animated: true)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FlatUIKit
 
 class aboutViewController: UIViewController {
     
@@ -14,7 +15,7 @@ class aboutViewController: UIViewController {
     let aboutLabel: UILabel = {
         let abtLabel = UILabel()
         abtLabel.text = "About Brain Benchmark"
-        abtLabel.font = UIFont(name: "SF Pro Rounded", size: 36)
+        abtLabel.font = UIFont.init(name: "Lato-Italic", size: 36)
         let attributedString = NSMutableAttributedString.init(string: "About Brain Benchmark")
         abtLabel.textColor = .white
         
@@ -28,15 +29,27 @@ class aboutViewController: UIViewController {
     let aboutText: UILabel = {
         let abtText = UILabel()
         abtText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        abtText.font = UIFont(name: "SF Pro Rounded", size: 24)
+        abtText.font = UIFont.init(name: "Lato-Regular", size: 24)
         abtText.textAlignment = .center
         abtText.textColor = .white
         abtText.numberOfLines = 0
         return abtText
     }()
     
-    let backButton: UIButton = {
-        let back = UIButton()
+    let backButton: FUIButton = {
+        let back = FUIButton(type: .system)
+        back.frame = CGRect(x: 0, y: 0, width: 30, height: 20)
+        back.setTitle("Back", for: .normal)
+        back.buttonColor = UIColor.turquoise()
+        back.shadowColor = UIColor.greenSea()
+        back.shadowHeight = 3.0
+        back.cornerRadius = 6.0
+        back.titleLabel?.font = UIFont.init(name: "Lato-Regular", size: 24)
+        back.setTitleColor(UIColor.clouds(), for: .normal)
+        back.setTitleColor(UIColor.clouds(), for: .highlighted)
+        back.contentEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
+        back.addTarget(self, action: #selector(backToHomepage), for: .touchUpInside)
+        /*
         back.setTitle("Back", for: .normal)
         back.frame = CGRect(x: 0, y: 0, width: 30, height: 20)
         
@@ -45,8 +58,9 @@ class aboutViewController: UIViewController {
         back.translatesAutoresizingMaskIntoConstraints = false
         back.backgroundColor = UIColor(hue: 0.265, saturation: 0.226, brightness: 0.851, alpha: 0.76)
         back.layer.cornerRadius = 30
-        back.contentEdgeInsets = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
-        back.addTarget(self, action: #selector(backToHomepage), for: .touchUpInside)
+        
+       
+ */
         return back
     }()
     

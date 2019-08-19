@@ -14,7 +14,7 @@ class activitiesController: UIViewController{
     let activitiesTitle: UILabel = {
         let testYourBrain = UILabel()
         testYourBrain.text = "Test Your Brain"
-        testYourBrain.font = UIFont(name: "SF Pro Rounded", size: 36)
+        testYourBrain.font = UIFont.init(name: "Lato-Italic", size: 36)
         let attributedString = NSMutableAttributedString.init(string: "Test Your Brain")
         testYourBrain.textColor = .white
         
